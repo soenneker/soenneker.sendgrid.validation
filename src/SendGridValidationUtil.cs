@@ -28,7 +28,7 @@ public class SendGridValidationUtil : ISendGridValidationUtil
         _sendGridValidationClientUtil = sendGridValidationClientUtil;
 
         _enabled = configuration.GetValueStrict<bool>("SendGrid:Validation:Enabled");
-        _log = configuration.GetValueStrict<bool>("SendGrid:Validation:LogEnabled");
+        _log = configuration.GetValue<bool>("SendGrid:Validation:LogEnabled");
     }
 
     public async ValueTask<EmailValidationResult?> Validate(string email, string source, CancellationToken cancellationToken = default)
