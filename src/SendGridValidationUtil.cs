@@ -15,7 +15,7 @@ using Soenneker.SendGrid.Validation.Responses;
 namespace Soenneker.SendGrid.Validation;
 
 ///<inheritdoc cref="ISendGridValidationUtil"/>
-public class SendGridValidationUtil : ISendGridValidationUtil
+public sealed class SendGridValidationUtil : ISendGridValidationUtil
 {
     private readonly ILogger<SendGridValidationUtil> _logger;
     private readonly ISendGridValidationClientUtil _sendGridValidationClientUtil;
