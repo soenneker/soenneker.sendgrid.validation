@@ -48,9 +48,10 @@ public sealed class SendGridValidationUtil : ISendGridValidationUtil
         {
             HttpClient client = await _sendGridValidationClientUtil.Get(cancellationToken).NoSync();
 
-            var request = new SendGridValidationRequest {Email = email, Source = source};
+            var request = new SendGridValidationRequest { Email = email, Source = source };
 
-            EmailValidationResult? result = await client.SendWithRetryToType<EmailValidationResult>(HttpMethod.Post, "validations/email", request, 2, _logger, null, _log, cancellationToken).NoSync();
+            EmailValidationResult? result = await client
+                .SendToTypeWithRetry<EmailValidationResult>(HttpMethod.Post, "validations/email", request, 2, _logger, null, _log, cancellationToken).NoSync();
 
             if (result?.Result == null)
             {
