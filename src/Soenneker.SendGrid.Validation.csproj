@@ -41,7 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Soenneker.Extensions.HttpClient" Version="4.0.3593" />
+        <PackageReference Include="Soenneker.Extensions.HttpClient" Version="4.0.3594" />
         <PackageReference Include="Soenneker.SendGrid.Client.Validation" Version="4.0.2094" />
     </ItemGroup>
 </Project>
