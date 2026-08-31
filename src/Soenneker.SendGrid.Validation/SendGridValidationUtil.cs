@@ -14,7 +14,6 @@ using Soenneker.SendGrid.Validation.Responses;
 
 namespace Soenneker.SendGrid.Validation;
 
-///<inheritdoc cref="ISendGridValidationUtil"/>
 public sealed class SendGridValidationUtil : ISendGridValidationUtil
 {
     private readonly ILogger<SendGridValidationUtil> _logger;
@@ -51,7 +50,7 @@ public sealed class SendGridValidationUtil : ISendGridValidationUtil
             var request = new SendGridValidationRequest { Email = email, Source = source };
 
             EmailValidationResult? result = await client
-                .SendToTypeWithRetry<EmailValidationResult>(HttpMethod.Post, "validations/email", request, 2, _logger, null, _log, cancellationToken).NoSync();
+                .SendToTypeWithRetry<EmailValidationResult>(HttpMethod.Post, "v3/validations/email", request, 2, _logger, null, _log, cancellationToken).NoSync();
 
             if (result?.Result == null)
             {
@@ -65,6 +64,10 @@ public sealed class SendGridValidationUtil : ISendGridValidationUtil
                 _logger.LogDebug("==SendGridValidation: Result for email ({email}): {verdict}", email, result.Result.Verdict);
 
             return result;
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            throw;
         }
         catch (Exception e)
         {

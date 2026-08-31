@@ -6,7 +6,7 @@ using Soenneker.SendGrid.Validation.Abstract;
 namespace Soenneker.SendGrid.Validation.Registrars;
 
 /// <summary>
-/// A .NET typesafe implementation of SendGrid's Validation API
+/// Registers the SendGrid email-address validation client.
 /// </summary>
 public static class SendGridValidationUtilRegistrar
 {
