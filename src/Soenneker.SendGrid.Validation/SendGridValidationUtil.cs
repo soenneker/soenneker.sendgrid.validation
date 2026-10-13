@@ -27,7 +27,7 @@ public sealed class SendGridValidationUtil : ISendGridValidationUtil
         _logger = logger;
         _sendGridValidationClientUtil = sendGridValidationClientUtil;
 
-        _enabled = configuration.GetValueStrict<bool>("SendGrid:Validation:Enabled");
+        _enabled = bool.Parse(configuration.GetStringStrict("SendGrid:Validation:Enabled"));
         _log = configuration.GetValue<bool>("SendGrid:Validation:LogEnabled");
     }
 
